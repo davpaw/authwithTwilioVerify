@@ -21,7 +21,7 @@ const verifyUser = async(req, res) => {
     
     if(verifyStatus === 'approved') {
         req.session.verified = true
-        res.redirect('/users/dashboard')
+        res.redirect('/users/authorized')
     } else {
         req.session.verified = false
         req.flash(

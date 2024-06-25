@@ -5,7 +5,7 @@ const router = express.Router()
 const { createUser, getSignup } = require('../controllers/signUpController')
 const { authUser, getLogin } = require('../controllers/loginController')
 const { loadVerify, verifyUser, resendCode } = require('../controllers/verifyController')
-const { isLoggedIn, isVerified, notVerified, notLoggedIn } = require('../config/middleware')
+const { isVerified, notVerified, notLoggedIn } = require('../config/middleware')
 
 
 //login route
@@ -13,7 +13,6 @@ router.route('/login')
     .all(notLoggedIn)
     .get(getLogin)
     .post(authUser)
-
 
 //signup route
 router.route('/signup')
@@ -29,21 +28,22 @@ router.route('/logout')
     })
 
 router.route('/resend')
-    .all(isLoggedIn, notVerified)
+    .all(notVerified)
     .get(resendCode)
 
 //verify route
 router.route('/verify')
-    .all(isLoggedIn, notVerified)
+    .all(notVerified)
     .get(loadVerify)
     .post(verifyUser)
 
 //dashboard
 router.route('/dashboard')
-    .all(isLoggedIn, isVerified)
+    .all(isVerified)
     .get(async (req, res) => {
-        res.render('dashboard')
+    res.render('dashboard')
     })
+    .post(authUser)
 
 
 //export router

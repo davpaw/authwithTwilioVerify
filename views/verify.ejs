@@ -2,14 +2,14 @@
 
 <%- include ('./partials/message') %>
 <h1>Verify page</h1>
-<p>please verify your account</p>
+<p>Please authorize your purchase</p>
 <form class="ui form" action="/users/verify" method="POST">
 
     <div class="field">
       <label>verification code</label>
       <input type="text" type="number" name="verifyCode" placeholder="code">
     </div>
-    <button class="ui button" type="submit">Verify</button>
+    <button class="ui button" type="submit">AuthZ</button>
 
 </form>
 <br>

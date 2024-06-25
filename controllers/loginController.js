@@ -26,8 +26,9 @@ const authUser = async(req, res, next) => {
                 if (err) { 
                     return next(err)
                 }
-                sendVerification(req, res, req.user.phonenumber)
-                res.redirect('/users/verify');
+                //sendVerification(req, res, req.user.phonenumber)
+                res.redirect('/users/dashboard')
+                //res.redirect('/users/verify');
             });
         })(req, res, next);
     } catch (error) {
